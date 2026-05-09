@@ -4,6 +4,7 @@
 
 #ifndef SKYCONTROL_FLIGHT_H
 #define SKYCONTROL_FLIGHT_H
+
 typedef enum {
     LANDING,
     TAKEOFF
@@ -19,9 +20,10 @@ typedef struct Flight {
     int fuel;
     FlightType type;
     Status status;
-}Flight;
+    int arrivalStep;  /* time step at which this flight joined the queue (for wait-time stats) */
+} Flight;
 
-Flight createFlight(int id, int fuel, FlightType type, Status status);
-void printFlightInfo(Flight f);
+Flight createFlight(int id, int fuel, FlightType type, Status status, int currentStep);
+void   printFlightInfo(Flight f);
 
 #endif //SKYCONTROL_FLIGHT_H
